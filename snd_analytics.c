@@ -5,6 +5,14 @@
 
 const FRAMES_IN_BUFFER = 2000;
 
+int print_array(float *array, short length) {
+  short i = 0;
+  for( i = 0; i < length; i++ ) {
+    printf("%f, ", array[i]);
+  }
+  printf("\n");
+}
+
 int get_stats(char *path, short sample_count) {
   SNDFILE *file;
   SF_INFO info;
@@ -44,15 +52,10 @@ int get_stats(char *path, short sample_count) {
 
   free(buffer);
   printf("\nMin: \n");
-  for( i = 0; i < sample_count; i++ ) {
-    printf("%f, ", samples_min[i]);
-  }
+  print_array(samples_min, sample_count);
 
   printf("\nMax: \n");
-  for( i = 0; i < sample_count; i++ ) {
-    printf("%f, ", samples_max[i]);
-  }
-  printf("\n");
+  print_array(samples_max, sample_count);
 }
 
 int main(int argc, char *argv[]) {
